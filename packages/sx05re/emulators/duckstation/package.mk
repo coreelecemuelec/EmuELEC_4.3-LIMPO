@@ -1,21 +1,31 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
-# Copyright (C) 2021-present Shanti Gilbert (https://github.com/shantigilbert)
+# Copyright (C) 2022-present AmberELEC (https://github.com/AmberELEC)
 
 PKG_NAME="duckstation"
-PKG_VERSION="4a017bd1"
-PKG_SHA256="5c0563c1ca68b099c3936097f132a737ad6e270a90198743e45acc3f1cbd8830"
-PKG_LICENSE="NON-COMMERCIAL"
-PKG_ARCH="aarch64"
-PKG_SITE="https://www.duckstation.org/libretro"
-PKG_URL="${PKG_SITE}/duckstation_libretro_linux_aarch64.zip"
-PKG_SHORTDESC="Fast PlayStation 1 emulator for PC and Android "
-PKG_TOOLCHAIN="manual"
+PKG_VERSION="573c8370d75d38e922fa7b9f99d9c87c1f913c5d"
+PKG_LICENSE="GPLv3"
+PKG_SITE="https://github.com/stenzek/duckstation"
+PKG_URL="${PKG_SITE}.git"
+PKG_DEPENDS_TARGET="toolchain nasm:host pulseaudio openssl curl libidn2 nghttp2 zlib SDL2 libevdev"
+PKG_LONGDESC="Fast PlayStation 1 emulator for x86-64/AArch32/AArch64"
+PKG_TOOLCHAIN="cmake-make"
 
-pre_unpack() {
-	unzip sources/duckstation/duckstation-${PKG_VERSION}.zip -d $PKG_BUILD
+PKG_CMAKE_OPTS_TARGET+="-DBUILD_LIBRETRO_CORE=ON \
+                        -DCMAKE_BUILD_TYPE="Release" \
+                        -DCMAKE_RULE_MESSAGES=OFF \
+                        -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON \
+                        -DCMAKE_C_FLAGS_RELEASE="-DNDEBUG" \
+                        -DCMAKE_CXX_FLAGS_RELEASE="-DNDEBUG" \
+                        -DBUILD_SDL_FRONTEND=OFF \
+                        -DBUILD_QT_FRONTEND=OFF \
+                        -DENABLE_DISCORD_PRESENCE=OFF \
+                        -DUSE_X11=OFF"
+
+pre_configure_target() {
+  sed -i 's/FS_OSPATH_SEPARATOR_STR "duckstation_cache"/FS_OSPATH_SEPARATOR_STR ".duckstation_cache"/g' ${PKG_BUILD}/src/duckstation-libretro/libretro_host_interface.cpp
 }
 
 makeinstall_target() {
-	mkdir -p $INSTALL/usr/lib/libretro
-	cp $PKG_BUILD/duckstation_libretro.so $INSTALL/usr/lib/libretro
+  mkdir -p ${INSTALL}/usr/lib/libretro
+  cp ${PKG_BUILD}/.${TARGET_NAME}/duckstation_libretro.so ${INSTALL}/usr/lib/libretro
 }

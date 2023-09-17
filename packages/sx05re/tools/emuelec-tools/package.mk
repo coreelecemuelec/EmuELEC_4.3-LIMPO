@@ -13,8 +13,6 @@ PKG_SECTION="virtual"
 PKG_DEPENDS_TARGET+=" ffmpeg \
                       libjpeg-turbo \
                       common-shaders \
-                      scraper \
-                      Skyscraper \
                       MC \
                       libretro-bash-launcher \
                       SDL_GameControllerDB \
@@ -39,7 +37,6 @@ PKG_DEPENDS_TARGET+=" ffmpeg \
                       pygobject \
                       coreutils \
                       wget \
-                      TvTextViewer \
                       imagemagick \
                       htop \
                       libevdev \
