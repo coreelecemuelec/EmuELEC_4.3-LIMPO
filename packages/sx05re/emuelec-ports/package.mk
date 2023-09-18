@@ -14,24 +14,7 @@ PKG_SHORTDESC="EmuELEC Ports Meta Package"
 PKG_TOOLCHAIN="manual"
 
 
-PKG_DEPENDS_TARGET+=" commander-genius \
-                devilutionX \
-                sdlpop \
-                opentyrian \
-                bermuda \
-                hodesdl \
-                hydracastlelabyrinth \
-                eduke \
-                rigelengine \
-                sonic2013 \
-                soniccd \
-                supertux \
-                supertuxkart \
-                chocolate-doom \
-                lzdoom \
-                hurrican \
-                cdogs-sdl \
-                fheroes2"
+PKG_DEPENDS_TARGET+=""
 
 amlogicports=""
 hhports=" openjazz"
@@ -60,6 +43,6 @@ sed  -i '$!N; /^\(.*\)\n\1$/!P; D' $file
 done
 
 # Remove empty lines from gamelist.xml
-sed -i '/^$/d' $INSTALL/usr/bin/ports/gamelist.xml
+# sed -i '/^$/d' $INSTALL/usr/bin/ports/gamelist.xml
 
 }
