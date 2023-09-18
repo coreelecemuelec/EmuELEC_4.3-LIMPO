@@ -5,20 +5,20 @@
 PKG_NAME="cmake"
 PKG_VERSION="3.27.5"
 PKG_LICENSE="BSD"
-PKG_SITE="https://github.com/Kitware/CMake"
-PKG_URL="https://github.com/Kitware/CMake.git"
-PKG_DEPENDS_HOST="openssl:host pkg-config:host"
+PKG_SITE="http://www.cmake.org/"
+PKG_URL="http://www.cmake.org/files/v${PKG_VERSION%.*}/$PKG_NAME-$PKG_VERSION.tar.gz"
+PKG_DEPENDS_HOST="ccache:host openssl:host"
 PKG_LONGDESC="A cross-platform, open-source make system."
 PKG_TOOLCHAIN="configure"
-PKG_BUILD_FLAGS="+local-cc"
 
 configure_host() {
-  ../configure --prefix=${TOOLCHAIN} \
+  ../configure --prefix=$TOOLCHAIN \
                --no-qt-gui --no-system-libs \
                -- \
                -DCMAKE_C_FLAGS="-O2 -Wall -pipe -Wno-format-security" \
                -DCMAKE_CXX_FLAGS="-O2 -Wall -pipe -Wno-format-security" \
-               -DCMAKE_EXE_LINKER_FLAGS="${HOST_LDFLAGS}" \
+               -DCMAKE_EXE_LINKER_FLAGS="$HOST_LDFLAGS" \
                -DCMAKE_USE_OPENSSL=ON \
+               -DOPENSSL_ROOT_DIR="$TOOLCHAIN" \
                -DBUILD_CursesDialog=0
 }
