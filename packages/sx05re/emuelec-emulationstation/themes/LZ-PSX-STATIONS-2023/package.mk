@@ -2,7 +2,7 @@
 # Copyright (C) 2019-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="LZ-PSX-STATIONS-2023"
-PKG_VERSION="ef76b19658c3b98717e9d662fddc5b7b722b8f1b"
+PKG_VERSION="90636bc968dd49ae84f3e3a006f7040e47baf434"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
