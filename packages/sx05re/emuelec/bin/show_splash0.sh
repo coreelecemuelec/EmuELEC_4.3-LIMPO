@@ -18,8 +18,8 @@ VIDEOSPLASH="/usr/config/splash/emuelec_intro_1080p.mp4"
 RANDOMVIDEO="/storage/.config/splash/introvideos"
 DURATION="5"
 
-if [ -f "/storage/.config/splash/introvideos2" ]; then
-    VIDEOSPLASH="/storage/.config/splash/introvideos2"
+if [ -f "/storage/.config/splash/intro.mp4" ]; then
+    VIDEOSPLASH="/storage/.config/splash/intro.mp4"
 fi
 
 # we make sure the platform is all lowercase
@@ -131,7 +131,7 @@ fi
 
 [[ "${PLATFORM}" != "intro" ]] && VIDEO=0 || VIDEO=$(get_ee_setting ee_bootvideo.enabled)
 
-if [[ -f "/storage/.config/emuelec/configs/novideo" ]] && [[ ${VIDEO} != "1" ]]; then
+if [[ -f "/storage/.config/emuelec/configs/introvideos2" ]] && [[ ${VIDEO} != "1" ]]; then
 	if [ "$PLATFORM" != "intro" ]; then
 	if [ "$SS_DEVICE" == 1 ]; then
         $PLAYER "$SPLASH" > /dev/null 2>&1
@@ -156,7 +156,7 @@ fi
     else
         $PLAYER -fs -autoexit ${SIZE} "$SPLASH" > /dev/null 2>&1
     fi
-	touch "/storage/.config/emuelec/configs/novideo"
+	touch "/storage/.config/splash/introvideos2"
 	#[ -e /storage/.config/asound.confs ] && mv /storage/.config/asound.confs /storage/.config/asound.conf
 fi
 
