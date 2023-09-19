@@ -15,8 +15,8 @@
 
 # Welcome Message for e.g. SSH Server (up to 5 Lines)
   GREETING0="##############################################"
-  GREETING1="#                 EmuELEC                    #"
-  GREETING2="#     Retro emulation for Amlogic Devices    #"
+  GREETING1="#            LZ GAMES RETRO STUDIOS          #"
+  GREETING2="#    UPDATE 19-SET-2023 LZ GAMES E INFO      #"
   GREETING3="#             Based on CoreELEC              #"
   GREETING4="##############################################"
 
@@ -266,8 +266,12 @@ cap32 \
 daphne \
 dinothawr \
 easyrpg \
+fbalpha \
 fbalpha2012 \
+fbalpha2013 \
+fbalpha2019 \
 fbneo \
+fbneo2 \
 fceumm \
 fceumm-mod \
 flycast \
@@ -284,6 +288,7 @@ gpsp \
 gw-libretro \
 handy \
 hatari \
+mame2000 \
 mame2003-plus \
 mame2003-midway \
 mame2010 \
@@ -303,7 +308,6 @@ pcsx_rearmed \
 picodrive \
 pocketcdg \
 pokemini \
-ppsspp \
 prboom \
 prosystem \
 puae \
