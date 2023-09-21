@@ -3,10 +3,10 @@
 # Copyright (C) 2022-present AmberELEC (https://github.com/AmberELEC)
 
 PKG_NAME="ppsspp"
-PKG_VERSION="e506ca25f8dd2631eafda8e9d96b910f02ed24ca"
+PKG_VERSION="7b4ddb426bbe9e287bb7f19b0cfaebb4ea0d41d8"
 PKG_LICENSE="GPLv2"
-PKG_SITE="https://github.com/hrydgard/ppsspp"
-PKG_URL="https://github.com/hrydgard/ppsspp.git"
+PKG_SITE="https://github.com/libretro/ppsspp"
+PKG_URL="https://github.com/libretro/ppsspp.git"
 PKG_DEPENDS_TARGET="toolchain SDL2 ffmpeg libzip zstd"
 PKG_LONGDESC="A PSP emulator for Android, Windows, Mac, Linux and Blackberry 10, written in C++."
 PKG_TOOLCHAIN="cmake-make"

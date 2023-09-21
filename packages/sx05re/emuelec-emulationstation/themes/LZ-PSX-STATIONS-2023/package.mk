@@ -2,11 +2,11 @@
 # Copyright (C) 2019-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="LZ-PSX-STATIONS-2023"
-PKG_VERSION="6eadbdfd4a484d170d348344e91845821e7a78b7"
+PKG_VERSION="90636bc968dd49ae84f3e3a006f7040e47baf434"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
-PKG_SITE="https://github.com/coreelecemuelec/LZ-PLAYSTATION-3.7"
+PKG_SITE="https://github.com/coreelecemuelec/LZ-PSX-STATIONS-2023"
 PKG_URL="$PKG_SITE/archive/$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="toolchain"
 PKG_SECTION="emuelec"

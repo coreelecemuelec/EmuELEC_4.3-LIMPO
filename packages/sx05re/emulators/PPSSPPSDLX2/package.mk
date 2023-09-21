@@ -1,0 +1,76 @@
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2019-present Shanti Gilbert (https://github.com/shantigilbert)
+
+PKG_NAME="PPSSPPSDLX2"
+PKG_VERSION="3eec8fc96432e98b6cf8c598f104e02f4072ebc3"
+# PKG_VERSION="3e481634ace6e799ef3f7a3fa6cdea0f4a8c060f"
+PKG_REV="1"
+PKG_ARCH="any"
+PKG_LICENSE="MAME"
+PKG_SITE="https://github.com/coreelecemuelec/PPSSPP"
+PKG_URL="https://github.com/coreelecemuelec/PPSSPP.git"
+PKG_DEPENDS_TARGET="toolchain ffmpeg libzip libpng SDL2 zlib zip"
+PKG_SHORTDESC="PPSSPPDL"
+PKG_LONGDESC="PPSSPP Standalone"
+GET_HANDLER_SUPPORT="git"
+PKG_BUILD_FLAGS="-lto"
+
+PKG_CMAKE_OPTS_TARGET+="-DUSE_WAYLAND_WSI=OFF \
+                        -DUSE_VULKAN_DISPLAY_KHR=OFF \
+                        -DUSING_FBDEV=ON \
+                        -DCMAKE_BUILD_TYPE=Release \
+                        -DCMAKE_SYSTEM_NAME=Linux \
+                        -DCMAKE_RULE_MESSAGES=OFF \
+                        -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON \
+                        -DCMAKE_C_FLAGS_RELEASE="-DNDEBUG" \
+                        -DCMAKE_CXX_FLAGS_RELEASE="-DNDEBUG" \
+                        -DUSING_EGL=OFF \
+                        -DUSING_GLES2=ON \
+                        -DVULKAN=OFF \
+                        -DARM_NO_VULKAN=ON \
+                        -DUSING_X11_VULKAN=OFF \
+                        -DBUILD_SHARED_LIBS=OFF \
+                        -DANDROID=OFF \
+                        -DWIN32=OFF \
+                        -DAPPLE=OFF \
+                        -DCMAKE_CROSSCOMPILING=ON \
+                        -DUSING_QT_UI=OFF \
+                        -DUNITTEST=OFF \
+                        -DSIMULATOR=OFF \
+                        -DHEADLESS=OFF \
+                        -DUSE_SYSTEM_FFMPEG=ON \
+                        -DUSE_SYSTEM_ZSTD=ON \
+                        -DUSE_SYSTEM_LIBZIP=ON \
+                        -DUSE_DISCORD=OFF"
+
+if [ $ARCH == "aarch64" ]; then
+PKG_CMAKE_OPTS_TARGET+=" -DARM64=ON"
+else
+PKG_CMAKE_OPTS_TARGET+=" -DARMV7=ON"
+fi
+
+
+pre_configure_target() {
+if [ "$DEVICE" == "OdroidGoAdvance" ] || [ "$DEVICE" == "GameForce" ]; then
+	sed -i "s|include_directories(/usr/include/drm)|include_directories(${SYSROOT_PREFIX}/usr/include/drm)|" $PKG_BUILD/CMakeLists.txt
+fi
+}
+
+pre_make_target() {
+  # fix cross compiling
+  find ${PKG_BUILD} -name flags.make -exec sed -i "s:isystem :I:g" \{} \;
+  find ${PKG_BUILD} -name build.ninja -exec sed -i "s:isystem :I:g" \{} \;
+}
+
+
+makeinstall_target() {
+  mkdir -p $INSTALL/usr/bin
+    cp $PKG_DIR/ppsspp.sh $INSTALL/usr/bin/ppsspp.sh
+    cp `find . -name "PPSSPPSDL" | xargs echo` $INSTALL/usr/bin/PPSSPPSDL
+    ln -sf /storage/.config/ppsspp/assets $INSTALL/usr/bin/assets
+    mkdir -p $INSTALL/usr/config/ppsspp/
+    cp -r `find . -name "assets" | xargs echo` $INSTALL/usr/config/ppsspp/
+    cp -rf $PKG_DIR/config/* $INSTALL/usr/config/ppsspp/
+    rm $INSTALL/usr/config/ppsspp/assets/gamecontrollerdb.txt
+    ln -sf /storage/.config/SDL-GameControllerDB/gamecontrollerdb.txt $INSTALL/usr/config/ppsspp/assets/gamecontrollerdb.txt
+} 
