@@ -2,7 +2,7 @@
 # Copyright (C) 2019-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="LZ-PS4-2024-STATIONS"
-PKG_VERSION="50519c917f330075baa5ed8994e8ee1e20f9258e"
+PKG_VERSION="837e90af194679510324adbf8196ba9d5f696011"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
