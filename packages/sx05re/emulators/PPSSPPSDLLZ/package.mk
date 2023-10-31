@@ -14,32 +14,11 @@ PKG_LONGDESC="PPSSPP Standalone"
 GET_HANDLER_SUPPORT="git"
 PKG_BUILD_FLAGS="-lto"
 
-PKG_CMAKE_OPTS_TARGET+="-DUSE_WAYLAND_WSI=OFF \
-                        -DUSE_VULKAN_DISPLAY_KHR=OFF \
+PKG_CMAKE_OPTS_TARGET+="-DUSE_SYSTEM_FFMPEG=ON \
                         -DUSING_FBDEV=ON \
-                        -DCMAKE_BUILD_TYPE=Release \
-                        -DCMAKE_SYSTEM_NAME=Linux \
-                        -DCMAKE_RULE_MESSAGES=OFF \
-                        -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON \
-                        -DCMAKE_C_FLAGS_RELEASE="-DNDEBUG" \
-                        -DCMAKE_CXX_FLAGS_RELEASE="-DNDEBUG" \
-                        -DUSING_EGL=OFF \
+                        -DUSING_EGL=ON \
                         -DUSING_GLES2=ON \
-                        -DVULKAN=OFF \
-                        -DARM_NO_VULKAN=ON \
                         -DUSING_X11_VULKAN=OFF \
-                        -DBUILD_SHARED_LIBS=OFF \
-                        -DANDROID=OFF \
-                        -DWIN32=OFF \
-                        -DAPPLE=OFF \
-                        -DCMAKE_CROSSCOMPILING=ON \
-                        -DUSING_QT_UI=OFF \
-                        -DUNITTEST=OFF \
-                        -DSIMULATOR=OFF \
-                        -DHEADLESS=OFF \
-                        -DUSE_SYSTEM_FFMPEG=ON \
-                        -DUSE_SYSTEM_ZSTD=ON \
-                        -DUSE_SYSTEM_LIBZIP=ON \
                         -DUSE_DISCORD=OFF"
 
 if [ $ARCH == "aarch64" ]; then

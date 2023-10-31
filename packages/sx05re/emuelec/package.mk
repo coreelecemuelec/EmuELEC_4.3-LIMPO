@@ -19,7 +19,7 @@ PKG_TOOLCHAIN="make"
 PKG_EXPERIMENTAL="munt nestopiaCV quasi88 xmil np2kai"
 PKG_EMUS="$LIBRETRO_CORES advancemame mame2016 PPSSPPSDLLZ amiberry hatarisa openbor dosbox-staging mupen64plus-nx mupen64plus-nx-alt scummvmsa stellasa solarus dosbox-pure pcsx_rearmed  potator freej2me duckstation flycastsa fmsx-libretro jzintv"
 PKG_TOOLS="emuelec-tools"
-PKG_DEPENDS_TARGET+=" $PKG_TOOLS $PKG_EMUS $PKG_EXPERIMENTAL emuelec-ports"
+PKG_DEPENDS_TARGET+=" $PKG_TOOLS $PKG_EMUS $PKG_EXPERIMENTAL"
 
 # Removed cores for space and/or performance
 # PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET mame2015 fba4arm reicastsa reicastsa_old mba.mini.plus $LIBRETRO_EXTRA_CORES xow"
